@@ -1,6 +1,6 @@
 from flet import Page, RouteChangeEvent, View, Text
-from utils.config import APP_NAME, COLOR_SCHEMA
-from pages import HomePage
+from utils.config import APP_NAME, COLOR_SCHEMA, ROUTES
+from pages import HomePage, ScanPage
 
 
 class App:
@@ -14,7 +14,8 @@ class App:
         
     def __map_pages(self):
         self.routes = {
-            "/": HomePage("/"),
+            ROUTES["Home"]: HomePage(ROUTES["Home"]),
+            ROUTES["Scan"]: ScanPage(ROUTES["Scan"]),
         }
     
     def __handle_route_change(self, event: RouteChangeEvent):
@@ -38,5 +39,5 @@ class App:
         self.page.update()
         
     def run(self):
-        self.page.go("/")
+        self.page.go(ROUTES["Home"])
         self.page.update()
